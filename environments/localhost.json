@@ -1,0 +1,10 @@
+{
+  "app": {
+    "name": "post",
+    "port": "8000",
+    "logLevel": "info",
+    "redisAuth": "",
+    "URL": "https//localhost:8000",
+    "MONGODB_URI": "mongodb+srv://admin:0017@company.boufh.mongodb.net/post?retryWrites=true&w=majority"
+  }
+}
