@@ -1,7 +1,6 @@
 const APIError = require("../../utils/APIError");
 const logger = require("../../utils/logger");
 const httpStatus = require("http-status");
-const log = require("../../utils/logger");
 
 class UserController {
   constructor(UserService, redisCon) {
