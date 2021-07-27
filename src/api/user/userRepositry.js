@@ -3,6 +3,7 @@ const logger = require("../../utils/logger");
 const APIError = require("../../utils/APIError");
 const httpStatus = require("http-status");
 
+
 class UserRepository {
   getAll = async () => {
     try {

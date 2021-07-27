@@ -24,11 +24,9 @@ class UserService {
   };
 
   getUserByEmail = async (emailPassword) => {
-    console.log(emailPassword);
     try {
-      const user = await this.userRepositry.findPostByEmail(emailPassword);
-      const validPassword = comparePWD(emailPassword.password, user.password);
-      return validPassword;
+      return await this.userRepositry.findPostByEmail(emailPassword);
+      // const validPassword = comparePWD(emailPassword.password, user.password);
     } catch (error) {
       if (error instanceof APIError) {
         throw error;

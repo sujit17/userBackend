@@ -11,6 +11,7 @@ const cors = require("cors");
 const server = express();
 
 // <------------ Middleware ------------>
+
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
 server.use("/images", express.static(path.join(__dirname, "images")));
@@ -20,6 +21,7 @@ server.use("/images", express.static(path.join(__dirname, "images")));
 server.use(cors({ origin: "http://localhost:3000" }));
 
 // <------ Server listen and Connecting with MongoDB ------->
+
 server.listen(PORT, () => {
   mongoose.set("useFindAndModify", false);
   mongoose.connect(MONGODB_URI, {
@@ -32,11 +34,13 @@ server.listen(PORT, () => {
 const db = mongoose.connection;
 
 // <------------- Error while Connecting Mongobd ---------------->
+
 db.on("error>>>>>", (err) => {
   console.log(err);
 });
 
 // <------------- Mongodb Connection OPEN  ---------------->
+
 db.once("open", () => {
   require("./src/route/index")(server);
   console.log(`Server started on port ${PORT}`);

@@ -1,7 +1,11 @@
 const APIError = require("../../utils/APIError");
 const logger = require("../../utils/logger");
 const httpStatus = require("http-status");
-const log = require("../../utils/logger");
+const jwt = require("jsonwebtoken");
+
+const { encryptPWD, comparePWD } = require("../../helper/helper");
+
+const JWT_SECRET = "dhsudhs||$#@&^!*()ofjodkas jktg67e9122330ij*())&*^$@!";
 
 class UserController {
   constructor(UserService, redisCon) {
@@ -20,10 +24,26 @@ class UserController {
   };
 
   getOneUser = async (req, res, next) => {
-    console.log(req.body);
     try {
       const data = await this.userService.getUserByEmail(req.body);
-      res.send(data);
+      console.log(data);
+      if (!data) {
+        res.json({ status: false });
+      } else {
+        let validPassword = comparePWD(req.body.password, data.password);
+        if (validPassword) {
+          const token = jwt.sign(
+            {
+              id: data._id,
+              email: data.email,
+            },
+            JWT_SECRET
+          );
+          res.json({ status: true, JWT: token });
+        } else {
+          res.json({ status: false });
+        }
+      }
     } catch (error) {
       logger.error(error);
       next();
