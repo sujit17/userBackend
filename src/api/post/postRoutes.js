@@ -1,7 +1,8 @@
 const { container } = require("../../modules/bottle");
+const { verifyToken } = require("../../helper/helper");
 
 module.exports = (server) => {
-  server.get("/post", container.PostController.getPosts);
+  server.get("/post", verifyToken, container.PostController.getPosts);
 
   server.get("/post/:name", container.PostController.getPost);
 
