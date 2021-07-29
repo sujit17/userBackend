@@ -10,15 +10,24 @@ const cors = require("cors");
 
 const server = express();
 
+server.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Headers",
+    "x-access-token, Origin, Content-Type, Accept"
+  );
+  next();
+});
+
 // <------------ Middleware ------------>
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
+server.use(express.urlencoded());
 server.use("/images", express.static(path.join(__dirname, "images")));
 
 // <------------- CORS ---------------->
 
-server.use(cors({ origin: "http://localhost:3000" }));
+server.use(cors());
 
 // <------ Server listen and Connecting with MongoDB ------->
 

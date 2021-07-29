@@ -30,7 +30,7 @@ class PostController {
   };
 
   createPost = async (req, res, next) => {
-    console.log("TOKEN", req.post);
+    console.log("TOKEN", req.body);
     try {
       const data = await this.postService.addPost(req.body);
       res.status(httpStatus.CREATED);

@@ -6,7 +6,7 @@ module.exports = (server) => {
 
   server.get("/post/:name", container.PostController.getPost);
 
-  server.post("/post", container.PostController.createPost);
+  server.post("/create", verifyToken, container.PostController.createPost);
 
   server.put("/post", container.PostController.createPost);
 };

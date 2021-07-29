@@ -24,9 +24,9 @@ class UserController {
   };
 
   getOneUser = async (req, res, next) => {
+    console.log(req.body);
     try {
       const data = await this.userService.getUserByEmail(req.body);
-      console.log(data);
       if (!data) {
         res.json({ status: false });
       } else {

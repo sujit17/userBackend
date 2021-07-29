@@ -16,8 +16,6 @@ const comparePWD = (password1, password2) => {
 const verifyToken = (req, res, next) => {
   const bearerHeader = req.headers["authorization"];
 
-  console.log("<><><><><>", req.headers);
-
   // chech if bearer is undefined
   if (typeof bearerHeader !== "undefined") {
     // Split Space bearer+Token
@@ -26,7 +24,7 @@ const verifyToken = (req, res, next) => {
 
     try {
       const decoded = jwt.verify(bearerToken, JWT_SECRET);
-      req.post = decoded;
+      // req.post = decoded;
       next();
     } catch (error) {
       return res.sendStatus(401);
