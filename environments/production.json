@@ -1,0 +1,10 @@
+{
+  "app": {
+    "name": "",
+    "port": "3001",
+    "logLevel": "info",
+    "redisAuth": "",
+    "URL": "https//localhost:3001",
+    "MONGODB_URI": ""
+  }
+}
